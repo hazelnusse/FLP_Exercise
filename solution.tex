@@ -159,10 +159,10 @@ mg\hat{\mathbf{k}} - F \sin \theta \hat{\mathbf{i}} - F \cos \theta
 \cos\theta)\hat{\mathbf{k}}
 \]
 Dotting this equation with $\cos\theta\hat{\mathbf{i}} - \sin \theta \hat{\mathbf{k}}$, dividing
-through by $m$ and rearranging, yields:
+through by $ml$ and rearranging, yields:
 \[
 \ddot{\theta} + \frac{g}{l} \sin \theta =
-0.01\left(\frac{2\pi}{1.1}\right)^2\sin\left(\frac{2\pi}{1.1}t\right) \cos
+\frac{0.01}{l}\left(\frac{2\pi}{1.1}\right)^2\sin\left(\frac{2\pi}{1.1}t\right) \cos
 \theta
 \]
 Notice how dotting the Newton's equation into the direction perpendicular to
@@ -172,10 +172,10 @@ $\sin \theta \approx \theta$ and $\cos \theta \approx 1$, which yields the
 following second order linear differential equation:
 \[
 \ddot{\theta} + \frac{g}{l} \theta =
-0.01\left(\frac{2\pi}{1.1}\right)^2\sin\left(\frac{2\pi}{1.1}t\right)
+\frac{0.01}{l}\left(\frac{2\pi}{1.1}\right)^2\sin\left(\frac{2\pi}{1.1}t\right)
 \]
 Defining $\omega_n^2 = \frac{g}{l}$ and $f_0 =
-0.01\left(\frac{2\pi}{1.1}\right)^2$, and $\omega = \frac{2\pi}{1.1}$, we can
+\frac{0.01}{l}\left(\frac{2\pi}{1.1}\right)^2$, and $\omega = \frac{2\pi}{1.1}$, we can
 rewrite the equation of motion as
 \[
 \ddot{\theta} + \omega_n^2 \theta = f_0 \sin \omega t
@@ -191,18 +191,19 @@ which implies that the amplitude of swing of the pendulum bob after steady
 motion is attained is:
 \begin{align*}
   \Theta &= \frac{f_0}{\omega_n^2 - \omega^2} \\
-         &= \frac{0.01\left(\frac{2\pi}{1.1}\right)^2}{(2\pi)^2 -
+         &= \frac{\frac{0.01}{l}\left(\frac{2\pi}{1.1}\right)^2}{(2\pi)^2 -
          (\frac{2\pi}{1.1})^2} \\
-         &= 0.047619 \quad \text{rad}\\
-         &= 2.7284 \quad \text{deg}
+         &= \frac{0.047619}{l}
 \end{align*}
 Where we made use of the fact that the natural frequency is related to the
 natural period of oscillation by $\omega_n = 2\pi / T = 2\pi$ rad/s.
 
-Note that this solution does not depend in any way on the physical parameters I
-introduced to show the derivation of the equation of motion, it only depends on
-the natural frequency of the pendulum, and the magnitude and frequency of the
-horizontal displacement. This solution is only valid for small angles, and
-assumes that friction is negligible.
-
+Note that this solution depends on the length of the rod.  However, if we
+assume Earth's gravitational constant $g=9.81$, then from $g/l=\omega_n^2$ we
+can calculate that $l = 0.2485$ m.  Under this assumption, the amplitude of
+oscillations is then:
+\begin{align*}
+  \Theta &= 0.1916 \text{ rad}\\
+         &= 10.98  \text{ deg}
+\end{align*}
 \end{document}
