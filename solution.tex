@@ -1,13 +1,52 @@
 \documentclass[letter, 11pt]{article}
-\usepackage[margin=1in,centering]{geometry}
+\usepackage[margin=.75in,centering]{geometry}
 \usepackage{amsmath}
 
 \usepackage{tikz}
 \usepgflibrary{arrows}
 \usetikzlibrary{calc,intersections,through,backgrounds}
+\usepackage[pdfauthor={Dale Lukas Peterson},
+            pdftitle={Feynman Exercises Lecture Challenge},
+            pdftex]{hyperref}
+
+\author{Dale Lukas Peterson
+\href{mailto:hazelnusse@gmail.com}{$<$hazelnusse@gmail.com$>$}}
+\title{\href{http://feynmanlectures.info/announcement.html}{Feynman Exercises
+Lecture Challenge}}
+\date{\today}
 
 \begin{document}
 \pagestyle{empty}
+\maketitle
+
+\section*{Restrictions on Solution Method}
+In one of the Review lectures Feynman gave to his freshman students, just
+before their first big exam, he advised them as follows (copied from Feynman's
+Tips on Physics, a problem-solving supplement to The Feynman Lectures on
+Physics):
+
+\begin{quote}
+  Now, all these things you can feel. You don't have to feel them; you can work
+  them out by making diagrams and calculations, but as problems get more and
+  more difficult, and as you try to understand nature in more and more
+  complicated situations, the more you can guess at, feel, and understand
+  without actually calculating, the much better off you are! So that's what you
+  should practice doing on the various problems: when you have time somewhere,
+  and you're not worried about getting the answer for a quiz or something, look
+  the problem over and see if you can understand the way it behaves, roughly,
+  when you change some of the numbers.
+\end{quote}
+
+The challenge is to solve the problem given below (originally homework for FLP
+Vol. I, chapter 23) in the spirit of Feynman's advice, above. It must be solved
+without using any calculus or differential equations or integral equations or
+difference equations, etc., without iterative numerical methods, nor any such
+fancy mathematical tricks! You may use only algebra, geometry, trigonometry,
+dimensional analysis, and Newtonian mechanics, in your solution, which should
+be guided by your physical intuition (however note: all intuitions used in
+solutions must be justified)! Your answer does not have to be exact, but it
+should at least be a very close approximation. And be sure to show all your
+work! Here is the problem:
 
 \section*{Problem Statement}
 The pivot point of a simple pendulum having a natural period of 1.00 second is
@@ -18,13 +57,11 @@ motion is attained?
 \section*{Solution}
 The first step in the solution process is to obtain the equation of motion. To
 this end, I introduce a few symbols to represent physical quantities: $m$, $l$,
-$g$, $F_g$, $F_r$, being the mass of the pendulum, the length from the pendulum
-pivot to the mass center, the gravitational constant, the gravitational force
-acting on the mass, and the force acting on the mass from the rod,
-respectively. Without loss of generality, I assume a simple point mass pendulum
-with a massless rod.
-
-\begin{figure}[!hbp]
+$g$, being the mass of the pendulum, the length from the pendulum pivot to the
+mass center, and the gravitational constant. Without loss of generality, I
+assume a simple point mass pendulum with a massless rod, and no dissipation of
+any kind.
+\begin{figure}[!ht]
   \centering
   \begin{tikzpicture}[>=angle 45, auto]
 
@@ -45,21 +82,31 @@ with a massless rod.
     \coordinate (A0) at (2.5, -1.3);
     \coordinate (A1) at (3.5, -1.032);
 
+    % Reference line for theta to be measured from
     \draw[very thin] (P) -- (2.5, -1.5);
 
+    % From inertial origin to pendulum pivot
     \draw[->, very thin, gray] (O) -- (P);
+
+    % Put a solid dot at O and P
     \foreach \point in  {O, P}
       \fill [black] (\point) circle(1pt);
+
+    % Label the displacement at the midpoint of O and P
     \node [label=above:$x$] (X) at ($ (O)!.5!(P) $) {};
 
+    % Draw the mass
     \fill [black] (M) circle(3pt);
-    \node [label=right:$l$] (L) at ($ (P)!.5!(M) $) {};
-    \draw (P) -- (M);
 
+    % Draw and label the rod
+    \draw (P) -- (M);
+    \node [label=right:$l$] (L) at ($ (P)!.5!(M) $) {};
+
+    % Draw and label the arc that indicates the angular displacement
     \draw[->, very thin, gray] (A0) arc (-90:-60:2.0);
     \node [label=below:$\theta$] (T) at ($ (A0)!.5!(A1) $) {};
 
-
+    % Draw and label the i-j-k unit vectors
     \coordinate (CO) at (0.0, -0.5);
     \coordinate (X) at (0.5, -0.5);
     \coordinate (Y) at (0.0, -1.0);
@@ -67,6 +114,8 @@ with a massless rod.
     \node [label=below:$\hat{\mathbf{k}}$] (J) at (Y) {};
     \draw[->, thick] (CO) -- (X);
     \draw[->, thick] (CO) -- (Y);
+
+    %Draw and label the direction of the local gravitational field
     \draw[->, thick] ($ (X) + (1.0, 0.) $) -- ++(0, -1.0);
     \node [label=below:$g$] (G) at (1.5, -1.5) {};
   \end{tikzpicture}
