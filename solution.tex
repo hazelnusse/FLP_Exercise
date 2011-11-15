@@ -199,11 +199,18 @@ Where we made use of the fact that the natural frequency is related to the
 natural period of oscillation by $\omega_n = 2\pi / T = 2\pi$ rad/s.
 
 Note that this solution depends on the length of the rod.  However, if we
-assume Earth's gravitational constant $g=9.81$, then from $g/l=\omega_n^2$ we
+assume Earth's gravitational constant $g=9.81$ m/s/s, then from $g/l=\omega_n^2$ we
 can calculate that $l = 0.2485$ m.  Under this assumption, the amplitude of
 oscillations is then:
 \begin{align*}
   \Theta &= 0.1916 \text{ rad}\\
          &= 10.98  \text{ deg}
+\end{align*}
+This allows us to find the horizontal and vertical oscillations of
+\begin{align*}
+  X &= l\sin\Theta + 11\text{mm}\\
+    &= 57.3 \text{mm}\\
+  Y &= \frac{l}{2}(1 - \cos\Theta)\\
+    &= 2.27 \text{mm}
 \end{align*}
 \end{document}
