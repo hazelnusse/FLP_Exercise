@@ -24,27 +24,34 @@ l = g/(wn**2)    # Pendulum length
 def f(x, t):
   return array([x[1], -g/l*sin(x[0]) + a/l*w*w*sin(w*t)])
 
-t = linspace(0, 20, 1000)
-x = odeint(f, [0, 0], t)
+# Initial angle and angular rate
+#ic = [0., 0.]
+ic = [0., 1.1]
+
+# Numerically integrate the equations
+t = linspace(0, 30, 1000)
+x = odeint(f, ic, t)
+
+# Plot the response
 fig = plt.figure()
 host = fig.add_subplot(111)
 par1 = host.twinx()
 
-# Convert to degrees and plot
-x = 180./pi*x
 p1, = host.plot(t, x[:,0], 'b-', label=r'$\theta$')
 p2, = par1.plot(t, x[:,1], 'g-', label=r'$\dot{\theta}$')
 host.set_ylim(min(x[:,0]), max(x[:,0]))
 par1.set_ylim(min(x[:,1]), max(x[:,1]))
 
 host.set_xlabel('time, seconds')
-host.set_ylabel(r'$\theta$, degrees')
-par1.set_ylabel(r'$\dot{\theta}$, degrees / second')
+host.set_ylabel(r'$\theta$, rad')
+par1.set_ylabel(r'$\dot{\theta}$, rad / second')
 
 host.yaxis.label.set_color(p1.get_color())
 par1.yaxis.label.set_color(p2.get_color())
 
 host.tick_params(axis='y', colors=p1.get_color())
 par1.tick_params(axis='y', colors=p2.get_color())
-plt.savefig('pendulum_response.png')
+
+plt.title(r'Pendulum response, initial conditions: [{0}, {1}]'.format(x[0,0], x[0,1]))
+plt.savefig('pendulum_response_{0}_{1}.png'.format(x[0,0], x[0,1]))
 plt.show()
